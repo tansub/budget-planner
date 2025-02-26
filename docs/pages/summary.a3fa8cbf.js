@@ -1,0 +1,7 @@
+var e=globalThis,t={},n={},a=e.parcelRequire94c2;null==a&&((a=function(e){if(e in t)return t[e].exports;if(e in n){var a=n[e];delete n[e];var r={id:e,exports:{}};return t[e]=r,a.call(r.exports,r,r.exports),r.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,t){n[e]=t},e.parcelRequire94c2=a),a.register;var r=a("gEjZb"),o=a("ilpIi");async function c(){let e=(0,o.collection)(r.db,"expenses"),t=await (0,o.getDocs)(e),n=[];return t.forEach(e=>{n.push(e.data())}),n}async function d(){let e=await c(),t={};e.forEach(e=>{t[e.category]=(t[e.category]||0)+e.amount});let n=Object.keys(t),a=Object.values(t);new Chart(document.getElementById("categoryChart").getContext("2d"),{type:"pie",data:{labels:n,datasets:[{label:"Spending by Category",data:a,backgroundColor:["#FF6384","#36A2EB","#FFCE56","#4CAF50"]}]}})}async function i(){let e=await c(),t=document.getElementById("expense-table");t.innerHTML="",e.forEach(e=>{let n=e.createdAt?new Date(e.createdAt):null,a=n?n.toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"}):"No Date",r=document.createElement("tr");r.innerHTML=`
+            <td>${e.title||"Unknown"}</td>
+            <td>${e.category||"Uncategorized"}</td>
+            <td>$${parseFloat(e.amount||0).toFixed(2)}</td>
+            <td>${a}</td>
+        `,t.appendChild(r)})}(async function(){let e=(await c()).reduce((e,t)=>e+t.amount,0);document.getElementById("monthly-spending").textContent=e.toFixed(2)})(),d(),i();
+//# sourceMappingURL=summary.a3fa8cbf.js.map

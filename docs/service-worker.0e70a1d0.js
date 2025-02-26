@@ -1,0 +1,2 @@
+const e=["/budget-planner/","/budget-planner/index.html","/budget-planner/style.css","/budget-planner/script.js","/budget-planner/manifest.json","/budget-planner/icons/icon-128.png","/budget-planner/icons/icon-512.png"];self.addEventListener("install",n=>{n.waitUntil(caches.open("budget-planner-cache-v2").then(n=>n.addAll(e)))}),self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(n=>n||fetch(e.request)))});
+//# sourceMappingURL=service-worker.0e70a1d0.js.map
